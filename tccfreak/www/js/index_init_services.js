@@ -8,7 +8,6 @@
    -------------- */
 
 /*global angular*/
- angular.module('myApp',['ionic']).config(['$controllerProvider', function($controllerProvider) {
-	$controllerProvider.allowGlobals();
+angular.module('myApp', ['ionic', 'fabDirective']).config(['$controllerProvider', function ($controllerProvider) {
+    $controllerProvider.allowGlobals();
 }]);
-

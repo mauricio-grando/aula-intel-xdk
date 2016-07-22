@@ -7,7 +7,6 @@
     */
     function register_event_handlers() {
 
-
         /* button  #btnmenu */
         $(document).on("click", "#btnmenu", function (evt) {
             /*global uib_sb */
@@ -23,12 +22,7 @@
         });
 
         /* button  #btnalunos */
-        $(document).on("click", "#btnalunos", function (evt) {
-            /*global activate_subpage */
-            activate_subpage("#sbalunos");
-            uib_sb.toggle_sidebar($("#sbmenu"));
-            return false;
-        });
+        
 
         /* button  #btnvoltaraluno */
         $(document).on("click", "#btnvoltaraluno", function (evt) {
@@ -52,6 +46,39 @@
             return false;
         });
 
+        $(document).on("click", "#imgaluno", function (evt) {
+            navigator.camera.getPicture(
+                onSuccessFoto,
+                onErrorFoto, {
+                    quality: 50,
+                    destinationType: Camera.DestinationType.DATA_URL
+                }
+            );
+        });
+
+        /* button  #btnalunos */
+    $(document).on("click", "#btnalunos", function(evt)
+    {
+         /*global activate_subpage */
+         activate_subpage("#sblalunos"); 
+         return false;
+    });
+    
     }
     document.addEventListener("app.Ready", register_event_handlers, false);
 })();
+
+function addAluno() {
+    activate_subpage("#sbalunos");
+}
+
+function onErrorFoto(erroFoto) {
+    alert("Erro na captura da foto!" + erroFoto);
+}
+
+function onSuccessFoto(foto) {
+    // exibindo a foto
+    $("#imgaluno").attr("src",
+        "data:image/jpeg;base64," +
+        foto);
+}

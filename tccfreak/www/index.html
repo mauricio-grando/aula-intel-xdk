@@ -57,6 +57,7 @@
         <link rel="stylesheet" href="css/app.css">
         <link rel="stylesheet" type="text/css" href="css/index_main.less.css" class="main-less">
         <link rel="stylesheet" type="text/css" href="css/index_main.less.css" class="main-less">
+        <link rel="stylesheet" type="text/css" href="css/ion-fab.css">
 
         <!-- IMPORTANT: Do not include a weinre script tag as part of your release builds! -->
         <!-- Place your remote debugging (weinre) script URL from the Test tab here, if it does not work below -->
@@ -84,6 +85,7 @@
         <script type="application/javascript" src="lib/jquery.min.js"></script>
         <script type="application/javascript" src="marginal/marginal-position.js"></script>
         <script type="application/javascript" src="ionic/js/ionic.bundle.js"></script>
+        <script type="application/javascript" src="js/ion-fab.js"></script>
         <script type="application/javascript" src="js/index_init_services.js"></script>
         <script type="application/javascript" src="sidebar/js/hammer.js"></script>
         <script type="application/javascript" src="sidebar/js/jquery.hammer.js"></script>
@@ -144,6 +146,7 @@
                     <div class="widget uib_w_10 scale-image d-margins" data-uib="media/img" data-ver="0">
                         <figure class="figure-align">
                             <img src="images/Strabburg.jpg" id="imgaluno">
+
                             <figcaption data-position="bottom"></figcaption>
                         </figure>
                     </div>
@@ -179,6 +182,23 @@
                     <button class="button widget uib_w_18 d-margins ion button-large button-positive ion-android-checkmark icon-left" data-uib="ionic/button" data-ver="0" id="btnsalvartrabalho" ng-controller="uib_w_22_popup_controller" ng-click="show()">Salvar</button>
                     <button class="button widget uib_w_21 d-margins ion button-positive ion-android-system-back" data-uib="ionic/button" data-ver="0" id="btnvoltartrabalhos">Voltar</button>
                     <template class="uib-ionic-popup widget uib_w_22 d-margins" data-uib="ionic/popup" data-ver="0"></template>
+                </div>
+                <div id="sbassinatura" class="upage-content vertical-col left hidden">
+                    <canvas id="canvasAssinatura"></canvas>
+                    <div class="button-bar">
+                        <a class="button button-energized" onclick="clearAssinatura()">Limpar</a>
+                        <a class="button button-balanced" onclick="saveAssinatura()">Salvar</a>
+                    </div>
+                    <br>
+                </div>
+                <div id="sblalunos" class="upage-content vertical-col left hidden">
+                    <ion-scroll zooming="true" direction="xy">
+                        <ion-list class="widget uib_w_22 d-margins" data-uib="ionic/list" data-ver="0" id="lstalunos">
+                        </ion-list>
+                    </ion-scroll>
+                    <ion-fab id="addaluno" onclick="addAluno()">
+                        <i class="icon ion ion-android-add"></i>
+                    </ion-fab>
                 </div>
             </div>
         </div>
