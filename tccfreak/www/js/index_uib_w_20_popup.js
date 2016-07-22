@@ -16,5 +16,4 @@ function uib_w_20_popup_controller($scope, $ionicPopup) {
             }
         });
     };
-
-};
+}

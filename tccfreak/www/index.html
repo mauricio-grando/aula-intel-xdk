@@ -94,6 +94,8 @@
         <script type="application/javascript" src="js/index_uib_w_16_popup.js"></script>
         <script type="application/javascript" src="js/index_uib_w_19_popup.js"></script>
         <script type="application/javascript" src="js/index_uib_w_20_popup.js"></script>
+        <script type="application/javascript" src="js/index_uib_w_22_popup.js"></script>
+        <script type="application/javascript" src="js/index_uib_w_23_popup.js"></script>
     </head>
 
     <body ng-app="myApp">
@@ -131,7 +133,7 @@
                             <span class="uib_shim"></span>
                         </div>
 
-                        <button class="button widget uib_w_4 d-margins button-balanced ion ion-calendar icon-left" data-uib="ionic/button" data-ver="0" id="btnfrequencia">Frequência</button>
+                        <button class="button widget uib_w_4 d-margins ion button-balanced ion-calendar icon-left" data-uib="ionic/button" data-ver="0" id="btnfrequencia">Frequência</button>
                         <button class="button widget uib_w_5 d-margins ion button-balanced ion-code-working icon-left" data-uib="ionic/button" data-ver="0" id="btntrabalhos">Trabalhos</button>
                         <button class="button widget uib_w_6 d-margins ion button-balanced ion-person-stalker icon-left" data-uib="ionic/button" data-ver="0" id="btnalunos">Alunos</button>
                         <button class="button widget uib_w_7 d-margins ion button-balanced ion-android-information icon-left" data-uib="ionic/button" data-ver="0" id="btninformacoes" ng-controller="uib_w_19_popup_controller" ng-click="show()">Informações</button>
@@ -145,36 +147,38 @@
                             <figcaption data-position="bottom"></figcaption>
                         </figure>
                     </div>
-                    <label class="item item-input widget uib_w_11 d-margins" data-uib="ionic/input" data-ver="0" id="txtnomealuno">
+                    <label class="item item-input widget uib_w_11 d-margins" data-uib="ionic/input" data-ver="0">
                         <i class="icon placeholder-icon ion-ios7-person ion"></i>
                         <input type="text" placeholder="Nome do Aluno" id="txtnomealuno">
                     </label>
-                    <label class="item item-input widget uib_w_12 d-margins" data-uib="ionic/input" data-ver="0" id="txtnomecurso">
+                    <label class="item item-input widget uib_w_12 d-margins" data-uib="ionic/input" data-ver="0">
                         <i class="icon placeholder-icon ion-android-chat ion"></i>
                         <input type="text" placeholder="Nome do Curso" id="txtnomecurso">
                     </label>
                     <div class="uib-grid widget uib_w_13 grid-text grid-height d-margins" data-uib="layout/grid" data-ver="1">
                         <div class="uib-grid-row">
                             <div class="uib-grid-cell widget-container">
-                                <button class="button widget uib_w_14 d-margins ion button-positive ion-android-checkmark icon-left" data-uib="ionic/button" data-ver="0" id="btnsalvaraluno">Salvar</button>
+                                <button class="button widget uib_w_14 d-margins ion button-positive ion-android-checkmark icon-left" data-uib="ionic/button" data-ver="0" id="btnsalvaraluno" ng-controller="uib_w_23_popup_controller" ng-click="show()">Salvar</button>
                             </div>
                             <div class="uib-grid-cell widget-container">
                                 <button class="button widget uib_w_15 d-margins ion button-positive ion-android-system-back icon-left" data-uib="ionic/button" data-ver="0" id="btnvoltaraluno">Voltar</button>
                             </div>
                         </div>
                     </div>
+                    <template class="uib-ionic-popup widget uib_w_23 d-margins" data-uib="ionic/popup" data-ver="0"></template>
                 </div>
                 <div id="sbtrabalhos" class="upage-content vertical-col left hidden">
-                    <label class="item item-input widget uib_w_16 d-margins" data-uib="ionic/input" data-ver="0" id="txtnometrabalho">
+                    <label class="item item-input widget uib_w_16 d-margins" data-uib="ionic/input" data-ver="0">
                         <i class="icon placeholder-icon ion-android-note ion"></i>
-                        <input type="text" placeholder="Nome do Trabalho">
+                        <input type="text" placeholder="Nome do Trabalho" id="txtnometrabalho">
                     </label>
-                    <label class="item item-input widget uib_w_17 d-margins" data-uib="ionic/input" data-ver="0" id="txtnomealuno">
+                    <label class="item item-input widget uib_w_17 d-margins" data-uib="ionic/input" data-ver="0">
                         <i class="icon placeholder-icon ion-android-contact ion"></i>
-                        <input type="text" placeholder="Nome do aluno">
+                        <input type="text" placeholder="Nome do aluno" id="txtnomealunotrab">
                     </label>
-                    <button class="button widget uib_w_18 d-margins ion button-large button-positive ion-android-checkmark icon-left" data-uib="ionic/button" data-ver="0" id="btnsalvartrabalho">Salvar</button>
+                    <button class="button widget uib_w_18 d-margins ion button-large button-positive ion-android-checkmark icon-left" data-uib="ionic/button" data-ver="0" id="btnsalvartrabalho" ng-controller="uib_w_22_popup_controller" ng-click="show()">Salvar</button>
                     <button class="button widget uib_w_21 d-margins ion button-positive ion-android-system-back" data-uib="ionic/button" data-ver="0" id="btnvoltartrabalhos">Voltar</button>
+                    <template class="uib-ionic-popup widget uib_w_22 d-margins" data-uib="ionic/popup" data-ver="0"></template>
                 </div>
             </div>
         </div>

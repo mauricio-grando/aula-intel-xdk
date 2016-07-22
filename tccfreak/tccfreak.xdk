@@ -6,7 +6,7 @@
       "projectTypeName": "com.intel.xdk.projecttype.jsapp",
       "src": "jsapp/template-blank-cordova-ad-project/sample.zip",
       "projectGuid": "186971b7-2722-40e2-b140-1c8be5cdb9ea",
-      "lastModifiedDate": 1468081717266,
+      "lastModifiedDate": 1469152275791,
       "creationDate": 1468076015490
     },
     "XDK-app-designer": "true",
@@ -69,6 +69,24 @@
         "name": "Splashscreen",
         "description": "Cordova Splashscreen Plugin",
         "checksum": "452a4659"
+      },
+      {
+        "id": "cordova-plugin-dialogs",
+        "name": "Notification",
+        "version": "1.2.0",
+        "originType": "cordova.io",
+        "origin": "cordova-plugin-dialogs",
+        "gitref": "",
+        "paramvals": {},
+        "sourceLocation": "plugins/cordova-plugin-dialogs",
+        "selectedState": "Included",
+        "checksum": "1af74557",
+        "dependsOn": [],
+        "topLevel": true,
+        "permissions": {},
+        "description": "Cordova Notification Plugin",
+        "data": {},
+        "dependedBy": []
       }
     ],
     "buildConfigurations": {
