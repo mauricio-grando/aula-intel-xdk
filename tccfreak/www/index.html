@@ -1,16 +1,16 @@
 <!DOCTYPE html>
 <html>
-    <!--
+<!--
   * Please see the included README.md file for license terms and conditions.
   -->
 
-    <head>
-        <meta charset="UTF-8">
-        <link rel="stylesheet" type="text/css" href="ionic/css/ionic.min.css">
-        <title>Blank App Designer Cordova Web App Project Template</title>
-        <meta http-equiv="Content-type" content="text/html; charset=utf-8">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" type="text/css" href="ionic/css/ionic.min.css">
+    <title>Blank App Designer Cordova Web App Project Template</title>
+    <meta http-equiv="Content-type" content="text/html; charset=utf-8">
 
-        <!--
+    <!--
   * The "meta viewport" tag (below) helps your app size appropriately to a device's ideal viewport.
   * Note that Windows device viewports work better when initialized using the @viewport CSS rule.
   * For a quick overview of "meta viewport" and @viewport, see this article:
@@ -22,189 +22,199 @@
   *   https://developer.apple.com/library/safari/documentation/AppleApplications/Reference/SafariHTMLRef/Articles/MetaTags.html
 -->
 
-        <!-- <meta name="viewport" content="width=device-width, minimum-scale=1, initial-scale=1"> -->
-        <meta name="viewport" content="width=device-width, minimum-scale=1, initial-scale=1, user-scalable=no">
-        <!-- <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=yes, minimum-scale=1, maximum-scale=2"> -->
+    <!-- <meta name="viewport" content="width=device-width, minimum-scale=1, initial-scale=1"> -->
+    <meta name="viewport" content="width=device-width, minimum-scale=1, initial-scale=1, user-scalable=no">
+    <!-- <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=yes, minimum-scale=1, maximum-scale=2"> -->
 
-        <style>
-            /* following three (cascaded) are equivalent to above three meta viewport statements */
-            /* see http://www.quirksmode.org/blog/archives/2014/05/html5_dev_conf.html */
-            /* see http://dev.w3.org/csswg/css-device-adapt/ */
-            
-            @-ms-viewport {
-                width: 100vw;
-                min-zoom: 100%;
-                zoom: 100%;
-            }
-            
-            @viewport {
-                width: 100vw;
-                min-zoom: 100% zoom: 100%;
-            }
-            
-            @-ms-viewport {
-                user-zoom: fixed;
-                min-zoom: 100%;
-            }
-            
-            @viewport {
-                user-zoom: fixed;
-                min-zoom: 100%;
-            }
-            /*@-ms-viewport { user-zoom: zoom ; min-zoom: 100% ; max-zoom: 200% ; }   @viewport { user-zoom: zoom ; min-zoom: 100% ; max-zoom: 200% ; }*/
-        </style>
+    <style>
+        /* following three (cascaded) are equivalent to above three meta viewport statements */
+        /* see http://www.quirksmode.org/blog/archives/2014/05/html5_dev_conf.html */
+        /* see http://dev.w3.org/csswg/css-device-adapt/ */
+        
+        @-ms-viewport {
+            width: 100vw;
+            min-zoom: 100%;
+            zoom: 100%;
+        }
+        
+        @viewport {
+            width: 100vw;
+            min-zoom: 100% zoom: 100%;
+        }
+        
+        @-ms-viewport {
+            user-zoom: fixed;
+            min-zoom: 100%;
+        }
+        
+        @viewport {
+            user-zoom: fixed;
+            min-zoom: 100%;
+        }
+        /*@-ms-viewport { user-zoom: zoom ; min-zoom: 100% ; max-zoom: 200% ; }   @viewport { user-zoom: zoom ; min-zoom: 100% ; max-zoom: 200% ; }*/
+    </style>
 
-        <link rel="stylesheet" href="css/app.css">
-        <link rel="stylesheet" type="text/css" href="css/index_main.less.css" class="main-less">
-        <link rel="stylesheet" type="text/css" href="css/index_main.less.css" class="main-less">
-        <link rel="stylesheet" type="text/css" href="css/ion-fab.css">
+    <link rel="stylesheet" href="css/app.css">
+    <link rel="stylesheet" type="text/css" href="css/index_main.less.css" class="main-less">
+    <link rel="stylesheet" type="text/css" href="css/index_main.less.css" class="main-less">
+    <link rel="stylesheet" type="text/css" href="css/ion-fab.css">
 
-        <!-- IMPORTANT: Do not include a weinre script tag as part of your release builds! -->
-        <!-- Place your remote debugging (weinre) script URL from the Test tab here, if it does not work below -->
-        <!-- <script src="http://debug-software.intel.com/target/target-script-min.js#insertabiglongfunkynumberfromthexdkstesttab"></script> -->
+    <!-- IMPORTANT: Do not include a weinre script tag as part of your release builds! -->
+    <!-- Place your remote debugging (weinre) script URL from the Test tab here, if it does not work below -->
+    <!-- <script src="http://debug-software.intel.com/target/target-script-min.js#insertabiglongfunkynumberfromthexdkstesttab"></script> -->
 
-        <!-- Recommended location for your JavaScript libraries -->
-        <!-- These library references (below) are just examples to give you the general idea... -->
-        <!-- <script src="lib/mc/hammer.js"></script> -->
-        <!-- <script src="lib/ft/fastclick.js"></script> -->
+    <!-- Recommended location for your JavaScript libraries -->
+    <!-- These library references (below) are just examples to give you the general idea... -->
+    <!-- <script src="lib/mc/hammer.js"></script> -->
+    <!-- <script src="lib/ft/fastclick.js"></script> -->
 
-        <!--
+    <!--
   * cordova.js is a phantom lib for "Cordova HTML5 web app," it does nothing in a "Standard HTML5 web app"
   * Seeing a "Failed to load resource: net::ERR_FILE_NOT_FOUND" message caused by this "cordova.js" script?
   * The cordova.js script is required if you convert your "Standard HTML5" project into a "Cordova" project.
   * You can safely ignore the error or comment out this line if you will not be developing a Cordova app.
 -->
-        <script src="cordova.js" id="xdkJScordova_"></script>
+    <script src="cordova.js" id="xdkJScordova_"></script>
 
-        <script src="js/app.js"></script>
-        <!-- for your event code, see README and file comments for details -->
-        <script src="js/init-app.js"></script>
-        <!-- for your init code, see README and file comments for details -->
-        <script src="xdk/init-dev.js"></script>
-        <!-- normalizes device and document ready events, see file for details -->
-        <script type="application/javascript" src="lib/jquery.min.js"></script>
-        <script type="application/javascript" src="marginal/marginal-position.js"></script>
-        <script type="application/javascript" src="ionic/js/ionic.bundle.js"></script>
-        <script type="application/javascript" src="js/ion-fab.js"></script>
-        <script type="application/javascript" src="js/index_init_services.js"></script>
-        <script type="application/javascript" src="sidebar/js/hammer.js"></script>
-        <script type="application/javascript" src="sidebar/js/jquery.hammer.js"></script>
-        <script type="application/javascript" src="sidebar/js/swipe-hammer.js"></script>
-        <script type="application/javascript" src="sidebar/js/sidebar.js"></script>
+    <script src="js/app.js"></script>
+    <!-- for your event code, see README and file comments for details -->
+    <script src="js/init-app.js"></script>
+    <!-- for your init code, see README and file comments for details -->
+    <script src="xdk/init-dev.js"></script>
+    <!-- normalizes device and document ready events, see file for details -->
+    <script type="application/javascript" src="lib/jquery.min.js"></script>
+    <script type="application/javascript" src="marginal/marginal-position.js"></script>
+    <script type="application/javascript" src="ionic/js/ionic.bundle.js"></script>
+    <script type="application/javascript" src="js/ion-fab.js"></script>
+    <script type="application/javascript" src="js/index_init_services.js"></script>
+    <script type="application/javascript" src="sidebar/js/hammer.js"></script>
+    <script type="application/javascript" src="sidebar/js/jquery.hammer.js"></script>
+    <script type="application/javascript" src="sidebar/js/swipe-hammer.js"></script>
+    <script type="application/javascript" src="sidebar/js/sidebar.js"></script>
 
-        <script type="application/javascript" src="js/web-sql-storage.js"></script>
+    <script type="application/javascript" src="js/web-sql-storage.js"></script>
 
-        <script type="application/javascript" src="js/index_user_scripts.js"></script>
-        <script type="application/javascript" src="xdk/ad/ionic_subpage.js"></script>
-        <script type="application/javascript" src="js/index_uib_w_16_popup.js"></script>
-        <script type="application/javascript" src="js/index_uib_w_19_popup.js"></script>
-        <script type="application/javascript" src="js/index_uib_w_20_popup.js"></script>
-        <script type="application/javascript" src="js/index_uib_w_22_popup.js"></script>
-        <script type="application/javascript" src="js/index_uib_w_23_popup.js"></script>
-    </head>
+    <script type="application/javascript" src="js/index_user_scripts.js"></script>
+    <script type="application/javascript" src="xdk/ad/ionic_subpage.js"></script>
+    <script type="application/javascript" src="js/index_uib_w_16_popup.js"></script>
+    <script type="application/javascript" src="js/index_uib_w_19_popup.js"></script>
+    <script type="application/javascript" src="js/index_uib_w_20_popup.js"></script>
+    <script type="application/javascript" src="js/index_uib_w_22_popup.js"></script>
+    <script type="application/javascript" src="js/index_uib_w_23_popup.js"></script>
+</head>
 
-    <body ng-app="myApp">
+<body ng-app="myApp">
 
-        <!-- IMPORTANT: Do not include a weinre script tag as part of your release builds! -->
-        <!-- Place your remote debugging (weinre) script URL from the Test tab here, if it does not work above -->
-        <!-- <script src="http://debug-software.intel.com/target/target-script-min.js#insertabiglongfunkynumberfromthexdkstesttab"></script> -->
-        <div class="upage" id="mainpage">
-            <div class="upage-outer fixed-header-footer">
-                <div class="upage-content ac0 content-area vertical-col left" id="page_55_16">
+    <!-- IMPORTANT: Do not include a weinre script tag as part of your release builds! -->
+    <!-- Place your remote debugging (weinre) script URL from the Test tab here, if it does not work above -->
+    <!-- <script src="http://debug-software.intel.com/target/target-script-min.js#insertabiglongfunkynumberfromthexdkstesttab"></script> -->
+    <div class="upage" id="mainpage">
+        <div class="upage-outer fixed-header-footer">
+            <div class="upage-content ac0 content-area vertical-col left" id="page_55_16">
 
-                    <template class="uib-ionic-popup widget uib_w_19 d-margins" data-uib="ionic/popup" data-ver="0"></template>
-                    <template class="uib-ionic-popup widget uib_w_20 d-margins" data-uib="ionic/popup" data-ver="0"></template>
+                <template class="uib-ionic-popup widget uib_w_19 d-margins" data-uib="ionic/popup" data-ver="0"></template>
+                <template class="uib-ionic-popup widget uib_w_20 d-margins" data-uib="ionic/popup" data-ver="0"></template>
+
+            </div>
+            <ion-header-bar class="bar inner-element uib_w_1 bar-positive bar-header" data-uib="ionic/header" data-ver="0" align-title="center">
+                <div class="buttons widget-container content-area horiz-area wrapping-col"></div>
+                <h1 class="title">TCCFreak</h1>
+                <div class="buttons widget-container content-area horiz-area wrapping-col">
+                    <button class="button widget uib_w_9 d-margins ion ion-android-user-menu icon-only" data-uib="ionic/button" data-ver="0" id="btnmenu"></button>
                 </div>
-                <ion-header-bar class="bar inner-element uib_w_1 bar-positive bar-header" data-uib="ionic/header" data-ver="0" align-title="center">
-                    <div class="buttons widget-container content-area horiz-area wrapping-col"></div>
-                    <h1 class="title">TCCFreak</h1>
-                    <div class="buttons widget-container content-area horiz-area wrapping-col">
-                        <button class="button widget uib_w_9 d-margins ion ion-android-user-menu icon-only" data-uib="ionic/button" data-ver="0" id="btnmenu"></button>
-                    </div>
-                </ion-header-bar>
-                <ion-footer-bar class="bar inner-element uib_w_2 bar-positive bar-footer" data-uib="ionic/footer" data-ver="0">
-                    <div class="buttons widget-container content-area horiz-area wrapping-col"></div>
-                    <h1 class="title"></h1>
-                    <div class="buttons widget-container content-area horiz-area wrapping-col"></div>
-                </ion-footer-bar>
-                <div class="inner-element uib_w_3 uib_sidebar leftbar bar-bg thumb-bg bar-gutter fixed" data-uib="layout/left_sidebar" data-ver="1" data-anim="{'style':'overlap', 'v':200, 'side':'left', 'dur':200}" id="sbmenu">
-                    <div class="sidebar-content content-area vertical-col">
-                        <div class="grid grid-pad urow uib_row_1 row-height-1" data-uib="layout/row" data-ver="0">
-                            <div class="col uib_col_2 col-0_12-12" data-uib="layout/col" data-ver="0">
-                                <div class="widget-container content-area vertical-col">
-                                    <span class="uib_shim"></span>
-                                </div>
-                            </div>
-                            <span class="uib_shim"></span>
-                        </div>
-
-                        <button class="button widget uib_w_4 d-margins ion button-balanced ion-calendar icon-left" data-uib="ionic/button" data-ver="0" id="btnfrequencia">Frequência</button>
-                        <button class="button widget uib_w_5 d-margins ion button-balanced ion-code-working icon-left" data-uib="ionic/button" data-ver="0" id="btntrabalhos">Trabalhos</button>
-                        <button class="button widget uib_w_6 d-margins ion button-balanced ion-person-stalker icon-left" data-uib="ionic/button" data-ver="0" id="btnalunos">Alunos</button>
-                        <button class="button widget uib_w_7 d-margins ion button-balanced ion-android-information icon-left" data-uib="ionic/button" data-ver="0" id="btninformacoes" ng-controller="uib_w_19_popup_controller" ng-click="show()">Informações</button>
-                        <button class="button widget uib_w_8 d-margins ion button-balanced ion-close-circled icon-left" data-uib="ionic/button" data-ver="0" id="btnsair" ng-controller="uib_w_20_popup_controller" ng-click="show()">Sair</button>
-                    </div>
-                </div>
-                <div id="sbalunos" class="upage-content vertical-col left hidden">
-                    <div class="widget uib_w_10 scale-image d-margins" data-uib="media/img" data-ver="0">
-                        <figure class="figure-align">
-                            <img src="images/Strabburg.jpg" id="imgaluno">
-
-                            <figcaption data-position="bottom"></figcaption>
-                        </figure>
-                    </div>
-                    <label class="item item-input widget uib_w_11 d-margins" data-uib="ionic/input" data-ver="0">
-                        <i class="icon placeholder-icon ion-ios7-person ion"></i>
-                        <input type="text" placeholder="Nome do Aluno" id="txtnomealuno">
-                    </label>
-                    <label class="item item-input widget uib_w_12 d-margins" data-uib="ionic/input" data-ver="0">
-                        <i class="icon placeholder-icon ion-android-chat ion"></i>
-                        <input type="text" placeholder="Nome do Curso" id="txtnomecurso">
-                    </label>
-                    <div class="uib-grid widget uib_w_13 grid-text grid-height d-margins" data-uib="layout/grid" data-ver="1">
-                        <div class="uib-grid-row">
-                            <div class="uib-grid-cell widget-container">
-                                <button class="button widget uib_w_14 d-margins ion button-positive ion-android-checkmark icon-left" data-uib="ionic/button" data-ver="0" id="btnsalvaraluno" ng-controller="uib_w_23_popup_controller" ng-click="show()">Salvar</button>
-                            </div>
-                            <div class="uib-grid-cell widget-container">
-                                <button class="button widget uib_w_15 d-margins ion button-positive ion-android-system-back icon-left" data-uib="ionic/button" data-ver="0" id="btnvoltaraluno">Voltar</button>
+            </ion-header-bar>
+            <ion-footer-bar class="bar inner-element uib_w_2 bar-positive bar-footer" data-uib="ionic/footer" data-ver="0">
+                <div class="buttons widget-container content-area horiz-area wrapping-col"></div>
+                <h1 class="title"></h1>
+                <div class="buttons widget-container content-area horiz-area wrapping-col"></div>
+            </ion-footer-bar>
+            <div class="inner-element uib_w_3 uib_sidebar leftbar bar-bg thumb-bg bar-gutter fixed" data-uib="layout/left_sidebar" data-ver="1" data-anim="{'style':'overlap', 'v':200, 'side':'left', 'dur':200}" id="sbmenu">
+                <div class="sidebar-content content-area vertical-col">
+                    <div class="grid grid-pad urow uib_row_1 row-height-1" data-uib="layout/row" data-ver="0">
+                        <div class="col uib_col_2 col-0_12-12" data-uib="layout/col" data-ver="0">
+                            <div class="widget-container content-area vertical-col">
+                                <span class="uib_shim"></span>
                             </div>
                         </div>
+                        <span class="uib_shim"></span>
                     </div>
-                    <template class="uib-ionic-popup widget uib_w_23 d-margins" data-uib="ionic/popup" data-ver="0"></template>
-                </div>
-                <div id="sbtrabalhos" class="upage-content vertical-col left hidden">
-                    <label class="item item-input widget uib_w_16 d-margins" data-uib="ionic/input" data-ver="0">
-                        <i class="icon placeholder-icon ion-android-note ion"></i>
-                        <input type="text" placeholder="Nome do Trabalho" id="txtnometrabalho">
-                    </label>
-                    <label class="item item-input widget uib_w_17 d-margins" data-uib="ionic/input" data-ver="0">
-                        <i class="icon placeholder-icon ion-android-contact ion"></i>
-                        <input type="text" placeholder="Nome do aluno" id="txtnomealunotrab">
-                    </label>
-                    <button class="button widget uib_w_18 d-margins ion button-large button-positive ion-android-checkmark icon-left" data-uib="ionic/button" data-ver="0" id="btnsalvartrabalho" ng-controller="uib_w_22_popup_controller" ng-click="show()">Salvar</button>
-                    <button class="button widget uib_w_21 d-margins ion button-positive ion-android-system-back" data-uib="ionic/button" data-ver="0" id="btnvoltartrabalhos">Voltar</button>
-                    <template class="uib-ionic-popup widget uib_w_22 d-margins" data-uib="ionic/popup" data-ver="0"></template>
-                </div>
-                <div id="sbassinatura" class="upage-content vertical-col left hidden">
-                    <canvas id="canvasAssinatura"></canvas>
-                    <div class="button-bar">
-                        <a class="button button-energized" onclick="clearAssinatura()">Limpar</a>
-                        <a class="button button-balanced" onclick="saveAssinatura()">Salvar</a>
-                    </div>
-                    <br>
-                </div>
-                <div id="sblalunos" class="upage-content vertical-col left hidden">
-                    <ion-scroll zooming="true" direction="xy">
-                        <ion-list class="widget uib_w_22 d-margins" data-uib="ionic/list" data-ver="0" id="lstalunos">
-                        </ion-list>
-                    </ion-scroll>
-                    <ion-fab id="addaluno" onclick="addAluno()">
-                        <i class="icon ion ion-android-add"></i>
-                    </ion-fab>
+
+                    <button class="button widget uib_w_4 d-margins ion button-balanced ion-calendar icon-left" data-uib="ionic/button" data-ver="0" id="btnfrequencia">Frequência</button>
+                    <button class="button widget uib_w_5 d-margins ion button-balanced ion-code-working icon-left" data-uib="ionic/button" data-ver="0" id="btntrabalhos" ng-controller="uib_w_22_popup_controller" ng-click="listar()">Trabalhos</button>
+                    <button class="button widget uib_w_6 d-margins ion button-balanced ion-person-stalker icon-left" data-uib="ionic/button" data-ver="0" id="btnalunos" ng-controller="uib_w_23_popup_controller" ng-click="listar()">Alunos</button>
+                    <button class="button widget uib_w_7 d-margins ion button-balanced ion-android-information icon-left" data-uib="ionic/button" data-ver="0" id="btninformacoes" ng-controller="uib_w_19_popup_controller" ng-click="show()">Informações</button>
+                    <button class="button widget uib_w_8 d-margins ion button-balanced ion-close-circled icon-left" data-uib="ionic/button" data-ver="0" id="btnsair" ng-controller="uib_w_20_popup_controller" ng-click="show()">Sair</button>
                 </div>
             </div>
+            <div id="sbalunos" class="upage-content vertical-col left hidden">
+                <div class="widget uib_w_10 scale-image d-margins" data-uib="media/img" data-ver="0">
+                    <figure class="figure-align">
+                        <img src="images/Strabburg.jpg" id="imgaluno">
+
+                        <figcaption data-position="bottom"></figcaption>
+                    </figure>
+                </div>
+                <label class="item item-input widget uib_w_11 d-margins" data-uib="ionic/input" data-ver="0">
+                    <i class="icon placeholder-icon ion-ios7-person ion"></i>
+                    <input type="text" placeholder="Nome do Aluno" id="txtnomealuno">
+                </label>
+                <label class="item item-input widget uib_w_12 d-margins" data-uib="ionic/input" data-ver="0">
+                    <i class="icon placeholder-icon ion-android-chat ion"></i>
+                    <input type="text" placeholder="Nome do Curso" id="txtnomecurso">
+                </label>
+                <div class="uib-grid widget uib_w_13 grid-text grid-height d-margins" data-uib="layout/grid" data-ver="1">
+                    <div class="uib-grid-row">
+                        <div class="uib-grid-cell widget-container">
+                            <button class="button widget uib_w_14 d-margins ion button-positive ion-android-checkmark icon-left" data-uib="ionic/button" data-ver="0" id="btnsalvaraluno" ng-controller="uib_w_23_popup_controller" ng-click="salvar()">Salvar</button>
+                        </div>
+                        <div class="uib-grid-cell widget-container">
+                            <button class="button widget uib_w_15 d-margins ion button-positive ion-android-system-back icon-left" data-uib="ionic/button" data-ver="0" id="btnvoltaraluno" ng-controller="uib_w_23_popup_controller" ng-click="voltar()">Voltar</button>
+                        </div>
+                    </div>
+                </div>
+                <template class="uib-ionic-popup widget uib_w_23 d-margins" data-uib="ionic/popup" data-ver="0"></template>
+            </div>
+            <div id="sbtrabalhos" class="upage-content vertical-col left hidden">
+                <label class="item item-input widget uib_w_16 d-margins" data-uib="ionic/input" data-ver="0">
+                    <i class="icon placeholder-icon ion-android-note ion"></i>
+                    <input type="text" placeholder="Nome do Trabalho" id="txtnometrabalho">
+                </label>
+                <label class="item item-input widget uib_w_17 d-margins" data-uib="ionic/input" data-ver="0">
+                    <i class="icon placeholder-icon ion-android-contact ion"></i>
+                    <input type="text" placeholder="Nome do aluno" id="txtnomealunotrab">
+                </label>
+                <button class="button widget uib_w_18 d-margins ion button-large button-positive ion-android-checkmark icon-left" data-uib="ionic/button" data-ver="0" id="btnsalvartrabalho" ng-controller="uib_w_22_popup_controller" ng-click="salvar()">Salvar</button>
+                <button class="button widget uib_w_21 d-margins ion button-positive ion-android-system-back" data-uib="ionic/button" data-ver="0" id="btnvoltartrabalhos" ng-controller="uib_w_22_popup_controller" ng-click="voltar()">Voltar</button>
+                <template class="uib-ionic-popup widget uib_w_22 d-margins" data-uib="ionic/popup" data-ver="0"></template>
+            </div>
+            <div id="sbassinatura" class="upage-content vertical-col left hidden">
+                <canvas id="canvasAssinatura"></canvas>
+                <div class="button-bar">
+                    <a class="button button-energized" onclick="clearAssinatura()">Limpar</a>
+                    <a class="button button-balanced" onclick="saveAssinatura()">Salvar</a>
+                </div>
+                <br>
+            </div>
+            <div id="sblalunos" class="upage-content vertical-col left hidden">
+                <ion-scroll zooming="true" direction="xy">
+                    <ion-list class="widget uib_w_22 d-margins" data-uib="ionic/list" data-ver="0" id="lstalunos">
+                    </ion-list>
+                </ion-scroll>
+                <ion-fab id="addaluno" onclick="addAluno()">
+                    <i class="icon ion ion-android-add"></i>
+                </ion-fab>
+            </div>
+            <div id="sbltrabalhos" class="upage-content vertical-col left hidden">
+                <ion-scroll zooming="true" direction="xy">
+                    <ion-list class="widget uib_w_22 d-margins" data-uib="ionic/list" data-ver="0" id="lsttrabalhos">
+                    </ion-list>
+                </ion-scroll>
+                <ion-fab id="addtrabalhos" onclick="addTrabalho()">
+                    <i class="icon ion ion-android-add"></i>
+                </ion-fab>
+            </div>
         </div>
-    </body>
+    </div>
+</body>
 
 </html>
