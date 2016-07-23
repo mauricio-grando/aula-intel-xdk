@@ -41,6 +41,40 @@ function erro(error) {
             );
         });
 
+        $(document).on("click", "#btnsincronizar", function (evt) {
+            $.ajax({
+                async: true,
+                type: 'GET',
+                // adaptar para sincronização
+                url: 'http://rasystems.esy.es/index.php/trabalhos',
+                dataType: 'json',
+                contentType: 'application/json; charset=utf-8',
+                beforeSend: function () {
+                    //$('#loading').show();
+                },
+                complete: function () {
+                    //$("#loading").hide();
+                },
+                success: function (response) {
+                    alert(JSON.stringify(response));
+                },
+                error: function (error) {
+                    console.log(error);
+                }
+            });
+        });
+
+        var $loading = $("#loading").hide();
+        $(document)
+            .ajaxStart(function () {
+                alert('aaa');
+                $loading.show();
+                setInterval(function () {}, 10000);
+            })
+            .ajaxStop(function () {
+                $loading.hide();
+            });
+
     }
     document.addEventListener("app.Ready", register_event_handlers, false);
 })();
@@ -106,11 +140,8 @@ function deletarAluno(codalu) {
                             'OK'
                         );
 
-                        // removendo elementos
                         var item = document.getElementById(codalu);
                         item.parentNode.removeChild(item);
-
-
                     }
                 });
             } else {
