@@ -33,6 +33,7 @@ function erro(error) {
             );
         });
 
+        /*
         $(document).on("click", "#btnsincronizar", function (evt) {
 
             db.findTrabalhoAll(function (trabalhos) {
@@ -66,6 +67,29 @@ function erro(error) {
                     });
                 }
             })
+        });*/
+
+        $(document).on("click", "#btnsincronizar", function (evt) {
+            $.ajax({
+                async: true,
+                type: 'GET',
+                // adaptar para sincronização
+                url: 'http://rasystems.esy.es/index.php/trabalhos',
+                dataType: 'json',
+                contentType: 'application/json; charset=utf-8',
+                beforeSend: function () {
+                    //$('#loading').show();
+                },
+                complete: function () {
+                    //$("#loading").hide();
+                },
+                success: function (response) {
+                    alert(JSON.stringify(response));
+                },
+                error: function (error) {
+                    console.log(error);
+                }
+            });
         });
 
         var $loading = $("#loading").hide();
