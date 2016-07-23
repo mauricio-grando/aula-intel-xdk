@@ -71,6 +71,12 @@ function deletarTrabalho(codtra) {
                     "codtra": codtra
                 }), function (status) {
                     if (status === true) {
+                        navigator.notification.alert(
+                            'Trabalho removido com sucesso.',
+                            function (idx) {},
+                            'Alerta',
+                            'OK'
+                        );
                         // removendo elementos
                         var item = document.getElementById(codtra);
                         item.parentNode.removeChild(item);
@@ -96,7 +102,8 @@ function deletarAluno(codalu) {
                         navigator.notification.alert(
                             'Aluno removido com sucesso.', // message
                             function (idx) {},
-                            'Alerta', ['OK']
+                            'Alerta',
+                            'OK'
                         );
 
                         // removendo elementos
