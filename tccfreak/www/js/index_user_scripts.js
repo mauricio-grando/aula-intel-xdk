@@ -33,7 +33,7 @@ function erro(error) {
             );
         });
 
-        /*
+
         $(document).on("click", "#btnsincronizar", function (evt) {
 
             db.findTrabalhoAll(function (trabalhos) {
@@ -44,12 +44,8 @@ function erro(error) {
                         async: true,
                         type: 'GET',
                         // adaptar para sincronização
-                        url: 'http://rasystems.esy.es/index.php/itrabalho',
-                        data: {
-                            "codtra": trabalhos[i].codetra,
-                            "nometra": trabalhos[i].nometra,
-                            "nomcur": trabalhos[i].nomcur
-                        },
+                        url: 'http://rasystems.esy.es/index.php/itrabalho/' +
+                            trabalhos[i].codetra + '/' + trabalhos[i].nometra + '/' + trabalhos[i].nomcur,
                         dataType: 'json',
                         contentType: 'application/json; charset=utf-8',
                         beforeSend: function () {
@@ -67,9 +63,9 @@ function erro(error) {
                     });
                 }
             })
-        });*/
+        });
 
-        $(document).on("click", "#btnsincronizar", function (evt) {
+        /*$(document).on("click", "#btnsincronizar", function (evt) {
             $.ajax({
                 async: true,
                 type: 'GET',
@@ -90,7 +86,7 @@ function erro(error) {
                     console.log(error);
                 }
             });
-        });
+        });*/
 
         var $loading = $("#loading").hide();
         $(document)
