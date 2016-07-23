@@ -64,7 +64,7 @@ function uib_w_22_popup_controller($scope, $ionicPopup) {
 
     $scope.voltar = function () {
         /*global activate_subpage */
-        activate_subpage("#lsttrabalhos");
+        activate_subpage("#sbltrabalhos");
         return false;
     };
 }
