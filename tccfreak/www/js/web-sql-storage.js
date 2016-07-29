@@ -22,8 +22,8 @@ var WebSqlDB = function (successCallback, errorCallback) {
                 console.log('DEBUG - 5. initializeDatabase complete');
                 if (successCallback) successCallback();
             }
-        )
-    }
+        );
+    };
 
     this.createTable = function (tx) {
         var sqlTrabalho =
@@ -82,9 +82,52 @@ var WebSqlDB = function (successCallback, errorCallback) {
             function (tx, error) { // Error callback
                 alert('Create table error: ' + error.message);
             });
-    }
+    };
 
     this.addSampleData = function (tx) {
+        var frequencias = [
+            {
+                "codfrq": 1,
+                "codtra": 1,
+                "datfrq": "7/7/2016"
+            },
+            {
+                "codfrq": 2,
+                "codtra": 2,
+                "datfrq": "7/7/2016"
+            },
+            {
+                "codfrq": 3,
+                "codtra": 3,
+                "datfrq": "7/7/2016"
+            }
+            ];
+
+        var frequenciasAluno = [
+            {
+                "codfrqalu": 1,
+                "codalu": 1,
+                "codfrq": 1,
+                "sitalu": 'P',
+                "assalu": 'hahaha'
+            },
+            {
+                "codfrqalu": 2,
+                "codalu": 2,
+                "codfrq": 2,
+                "sitalu": 'P',
+                "assalu": 'hahaha'
+            },
+            {
+                "codfrqalu": 3,
+                "codalu": 3,
+                "codfrq": 3,
+                "sitalu": 'A',
+                "assalu": 'hahaha'
+            }
+            ];
+
+
         // Array of objects
         var trabalhos = [
             {
@@ -151,6 +194,8 @@ var WebSqlDB = function (successCallback, errorCallback) {
 
         var lt = trabalhos.length;
         var la = alunos.length;
+        var lf = frequencias.length;
+        var lfa = frequenciasAluno.length;
 
         var sqlT = "INSERT OR REPLACE INTO trabalho " +
             " (codtra, nomtra, nomcur) " +
@@ -158,8 +203,17 @@ var WebSqlDB = function (successCallback, errorCallback) {
         var sqlA = "INSERT OR REPLACE INTO aluno " +
             " (codalu, nomalu, nomcur, fotalu) " +
             " VALUES (?, ?, ?, ?)";
+        var sqlF = "INSERT OR REPLACE INTO frequencia " +
+            " (codfrq, codtra, datfrq) " +
+            " VALUES (?, ?, ?)";
+        var sqlFA = "INSERT OR REPLACE INTO frequencia_aluno " +
+            " (codfrqalu, codalu, codfrq, sitalu, assalu) " +
+            " VALUES (?, ?, ?, ?, ?)";
+
         var t;
         var a;
+        var f;
+        var fa;
 
         // Loop through sample data array and insert into db
         for (var i = 0; i < lt; i++) {
@@ -183,7 +237,30 @@ var WebSqlDB = function (successCallback, errorCallback) {
                     alert('INSERT error: ' + error.message);
                 });
         }
-    }
+
+        for (var i = 0; i < lf; i++) {
+            f = frequencias[i];
+            tx.executeSql(sqlF, [f.codfrq, f.codtra, f.datfrq],
+                function () { // Success callback
+                    console.log('DEBUG - 4. Sample data DB insert success');
+                },
+                function (tx, error) { // Error callback
+                    alert('INSERT error: ' + error.message);
+                });
+        }
+
+        for (var i = 0; i < lfa; i++) {
+            fa = frequenciasAluno[i];
+            tx.executeSql(sqlFA, [fa.codfrqalu, fa.codalu, fa.codfrq, fa.sitalu, fa.assalu],
+                function () { // Success callback
+                    console.log('DEBUG - 4. Sample data DB insert success');
+                },
+                function (tx, error) { // Error callback
+                    alert('INSERT error: ' + error.message);
+                });
+        }
+
+    };
 
     this.findTrabalhoAll = function (callback) {
         this.db.transaction(
@@ -205,7 +282,54 @@ var WebSqlDB = function (successCallback, errorCallback) {
                 alert("Transaction Error findAll: " + error);
             }
         );
-    }
+    };
+
+    this.findFrequenciaAll = function (callback) {
+        this.db.transaction(
+            function (tx) {
+                var sql = "SELECT * FROM frequencia";
+                tx.executeSql(sql, null, function (tx, results) {
+                    var len = results.rows.length,
+                        frequencias = [],
+                        i = 0;
+                    for (; i < len; i++) {
+                        frequencias[i] = results.rows.item(i);
+                    }
+
+                    // Passes a array with values back to calling function
+                    callback(frequencias);
+                });
+            },
+            function (tx, error) {
+                alert("Transaction Error findAll: " + error);
+            }
+        );
+    };
+
+    this.findFrequenciaAlunoAll = function (callback) {
+        this.db.transaction(
+            function (tx) {
+                var sql = "select fa.codalu as codalu, a.nomalu as nomalu, f.codtra as codtra, t.nomtra as nomtra" +
+                    "from frequencia_aluno fa inner join aluno a inner join frequencia f " +
+                    "inner join trabalho t where fa.codalu = a.codalu " +
+                    "and fa.codfrq = f.codfrq and f.codtra = t.codtra;"
+                tx.executeSql(sql, null, function (tx, results) {
+                    var len = results.rows.length,
+                        frequenciaAlunos = [],
+                        i = 0;
+                    for (; i < len; i++) {
+                        frequenciaAlunos[i] = results.rows.item(i);
+                    }
+
+                    // Passes a array with values back to calling function
+                    callback(frequenciaAlunos);
+                });
+            },
+            function (tx, error) {
+                alert("Transaction Error findAll: " + error);
+            }
+        );
+    };
 
     this.findTrabalhoById = function (codtra, callback) {
         this.db.transaction(
@@ -220,7 +344,7 @@ var WebSqlDB = function (successCallback, errorCallback) {
                 alert("Transaction Error: " + error.message);
             }
         );
-    }
+    };
 
     this.insertTrabalho = function (json, callback) {
         // Converts a JavaScript Object Notation (JSON) string into an object.
@@ -234,7 +358,37 @@ var WebSqlDB = function (successCallback, errorCallback) {
                 });
             }
         );
-    }
+    };
+
+    this.insertFrequencia = function (json, callback) {
+
+        // Converts a JavaScript Object Notation (JSON) string into an object.
+        var parsedJson = JSON.parse(json);
+        alert(parsedJson.codtra + ' - ' + parsedJson.datfrq);
+        this.db.transaction(
+            function (tx) {
+                var sql = "INSERT INTO frequencia (codtra, datfrq) VALUES (?, ?)";
+                tx.executeSql(sql, [parsedJson.codtra, parsedJson.datfrq], function (tx, result) {
+                    // If results rows
+                    callback(result.rowsAffected === 1 ? true : false);
+                });
+            }
+        );
+    };
+
+    this.insertFrequenciaAluno = function (json, callback) {
+        // Converts a JavaScript Object Notation (JSON) string into an object.
+        var parsedJson = JSON.parse(json);
+        this.db.transaction(
+            function (tx) {
+                var sql = "INSERT INTO frequencia_aluno (codalu, codfrq, sitalu, assalu) VALUES (?, ?, ?, ?)";
+                tx.executeSql(sql, [parsedJson.codlau, parsedJson.codfrq, parsedJson.sitalu, parsedJson.assalu], function (tx, result) {
+                    // If results rows
+                    callback(result.rowsAffected === 1 ? true : false);
+                });
+            }
+        );
+    };
 
     this.updateTrabalho = function (json, callback) {
         // Converts a JavaScript Object Notation (JSON) string into an object.
@@ -248,7 +402,7 @@ var WebSqlDB = function (successCallback, errorCallback) {
                 });
             }
         );
-    }
+    };
 
     this.deleteTrabalho = function (json, callback) {
         // Converts a JavaScript Object Notation (JSON) string into an object.
@@ -261,7 +415,7 @@ var WebSqlDB = function (successCallback, errorCallback) {
                 });
             }
         );
-    }
+    };
 
     this.findAlunoAll = function (callback) {
         this.db.transaction(
@@ -285,7 +439,7 @@ var WebSqlDB = function (successCallback, errorCallback) {
                 alert("Transaction Error findAll: " + error.message);
             }
         );
-    }
+    };
 
     this.findAlunoById = function (codalu, callback) {
         this.db.transaction(
@@ -300,7 +454,7 @@ var WebSqlDB = function (successCallback, errorCallback) {
                 alert("Transaction Error: " + error.message);
             }
         );
-    }
+    };
 
     this.insertAluno = function (json, callback) {
         // Converts a JavaScript Object Notation (JSON) string into an object.
@@ -314,7 +468,7 @@ var WebSqlDB = function (successCallback, errorCallback) {
                 });
             }
         );
-    }
+    };
 
     this.updateAluno = function (json, callback) {
         // Converts a JavaScript Object Notation (JSON) string into an object.
@@ -328,7 +482,7 @@ var WebSqlDB = function (successCallback, errorCallback) {
                 });
             }
         );
-    }
+    };
 
     this.deleteAluno = function (json, callback) {
         // Converts a JavaScript Object Notation (JSON) string into an object.
@@ -341,7 +495,7 @@ var WebSqlDB = function (successCallback, errorCallback) {
                 });
             }
         );
-    }
+    };
 
     // inicializando base de dados
     this.initializeDatabase(successCallback, errorCallback);

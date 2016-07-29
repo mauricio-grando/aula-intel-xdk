@@ -1,4 +1,5 @@
 var db = new WebSqlDB(sucesso, erro);
+var padAssinatura;
 
 function sucesso() {
     console.log("sucesso DB");
@@ -33,7 +34,6 @@ function erro(error) {
             );
         });
 
-
         $(document).on("click", "#btnsincronizar", function (evt) {
 
             db.findTrabalhoAll(function (trabalhos) {
@@ -62,7 +62,7 @@ function erro(error) {
                         }
                     });
                 }
-            })
+            });
         });
 
         /*$(document).on("click", "#btnsincronizar", function (evt) {
@@ -97,6 +97,15 @@ function erro(error) {
             .ajaxStop(function () {
                 $loading.hide();
             });
+
+        /* button  #btnfrequencia */
+        $(document).on("click", "#btnfrequencia", function (evt) {
+            /* your code goes here */
+            return false;
+        });
+
+        /* button  #btnassinatura */
+
 
     }
     document.addEventListener("app.Ready", register_event_handlers, false);
@@ -173,4 +182,10 @@ function deletarAluno(codalu) {
         },
         "Alerta", ['OK', 'Cancelar']
     );
+}
+
+function saveAssinatura() {
+    //$("#img").html(padAssinatura.toDataURL());
+    activate_subpage("#page_55_16");
+    return false;
 }

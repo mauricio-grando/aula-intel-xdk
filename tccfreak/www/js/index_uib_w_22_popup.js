@@ -55,6 +55,8 @@ function uib_w_22_popup_controller($scope, $ionicPopup) {
             "nomtra": $("#txtnometrabalho").val(),
             "nomcur": $("#txtnomealunotrab").val(),
         }), function (status) {
+            //alert(this.lastID);
+
             if (status === true) {
                 // capturando os dados do aluno da tela        
                 $scope.show();
