@@ -364,7 +364,6 @@ var WebSqlDB = function (successCallback, errorCallback) {
 
         // Converts a JavaScript Object Notation (JSON) string into an object.
         var parsedJson = JSON.parse(json);
-        alert(parsedJson.codtra + ' - ' + parsedJson.datfrq);
         this.db.transaction(
             function (tx) {
                 var sql = "INSERT INTO frequencia (codtra, datfrq) VALUES (?, ?)";
@@ -382,7 +381,7 @@ var WebSqlDB = function (successCallback, errorCallback) {
         this.db.transaction(
             function (tx) {
                 var sql = "INSERT INTO frequencia_aluno (codalu, codfrq, sitalu, assalu) VALUES (?, ?, ?, ?)";
-                tx.executeSql(sql, [parsedJson.codlau, parsedJson.codfrq, parsedJson.sitalu, parsedJson.assalu], function (tx, result) {
+                tx.executeSql(sql, [parsedJson.codalu, parsedJson.codfrq, parsedJson.sitalu, parsedJson.assalu], function (tx, result) {
                     // If results rows
                     callback(result.rowsAffected === 1 ? true : false);
                 });

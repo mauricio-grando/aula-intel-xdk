@@ -76,6 +76,7 @@
 -->
     <script src="cordova.js" id="xdkJScordova_"></script>
 
+    <script src="lib/signature_pad.js"></script>
     <script src="js/app.js"></script>
     <!-- for your event code, see README and file comments for details -->
     <script src="js/init-app.js"></script>
@@ -145,7 +146,7 @@
                     </div>
 
                     <button class="button widget uib_w_24 d-margins ion button-balanced ion-connection-bars icon-left" data-uib="ionic/button" data-ver="0" id="btnsincronizar">Sincronizar</button>
-                    <button class="button widget uib_w_9 d-margins ion button-balanced ion-calendar icon-left" data-uib="ionic/button" data-ver="0" id="btnassinatura" ng-controller="uib_w_25_popup_controller" ng-click="listar()">Assinaturas</button>
+                    <button class="button widget uib_w_9 d-margins ion button-balanced ion-calendar icon-left" data-uib="ionic/button" data-ver="0" id="btnassinatura" ng-controller="uib_w_25_popup_controller" ng-click="montar()">Assinaturas</button>
                     <button class="button widget uib_w_4 d-margins ion button-balanced ion-calendar icon-left" data-uib="ionic/button" data-ver="0" id="btnfrequencia" ng-controller="uib_w_25_popup_controller" ng-click="listar()">Frequência</button>
                     <button class="button widget uib_w_5 d-margins ion button-balanced ion-code-working icon-left" data-uib="ionic/button" data-ver="0" id="btntrabalhos" ng-controller="uib_w_22_popup_controller" ng-click="listar()">Trabalhos</button>
                     <button class="button widget uib_w_6 d-margins ion button-balanced ion-person-stalker icon-left" data-uib="ionic/button" data-ver="0" id="btnalunos" ng-controller="uib_w_23_popup_controller" ng-click="listar()">Alunos</button>
@@ -199,9 +200,10 @@
                 <div id="trabalho" style="display: none"></div>
 
                 <template class="uib-ionic-popup widget uib_w_25 d-margins" data-uib="ionic/popup" data-ver="0"></template>
-                <label class="item item-input widget uib_w_26 d-margins" data-uib="ionic/input" data-ver="0" id="datapresenca"><span class="input-label">Data</span>
-                    <i class="icon placeholder-icon ion-android-calendar ion"></i>
-                    <input type="date" id="datafrequencia" placeholder="Informe a data">
+                <label class="item item-input widget uib_w_26 d-margins" data-uib="ionic/input" data-ver="0"><span class="input-label">Data</span>
+
+                    <i class="icon ion-android-calendar ion placeholder-icon"></i>
+                    <input type="date" id="datafrequencia" value="">
                 </label>
                 <label class="item item-input item-select widget uib_w_27 d-margins" data-uib="ionic/select" data-ver="0">
                     <div class="input-label">Aluno</div>
