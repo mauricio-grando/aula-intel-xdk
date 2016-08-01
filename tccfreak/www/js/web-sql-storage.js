@@ -85,49 +85,6 @@ var WebSqlDB = function (successCallback, errorCallback) {
     };
 
     this.addSampleData = function (tx) {
-        var frequencias = [
-            {
-                "codfrq": 1,
-                "codtra": 1,
-                "datfrq": "7/7/2016"
-            },
-            {
-                "codfrq": 2,
-                "codtra": 2,
-                "datfrq": "7/7/2016"
-            },
-            {
-                "codfrq": 3,
-                "codtra": 3,
-                "datfrq": "7/7/2016"
-            }
-            ];
-
-        var frequenciasAluno = [
-            {
-                "codfrqalu": 1,
-                "codalu": 1,
-                "codfrq": 1,
-                "sitalu": 'P',
-                "assalu": 'hahaha'
-            },
-            {
-                "codfrqalu": 2,
-                "codalu": 2,
-                "codfrq": 2,
-                "sitalu": 'P',
-                "assalu": 'hahaha'
-            },
-            {
-                "codfrqalu": 3,
-                "codalu": 3,
-                "codfrq": 3,
-                "sitalu": 'A',
-                "assalu": 'hahaha'
-            }
-            ];
-
-
         // Array of objects
         var trabalhos = [
             {
@@ -194,8 +151,6 @@ var WebSqlDB = function (successCallback, errorCallback) {
 
         var lt = trabalhos.length;
         var la = alunos.length;
-        var lf = frequencias.length;
-        var lfa = frequenciasAluno.length;
 
         var sqlT = "INSERT OR REPLACE INTO trabalho " +
             " (codtra, nomtra, nomcur) " +
@@ -203,17 +158,9 @@ var WebSqlDB = function (successCallback, errorCallback) {
         var sqlA = "INSERT OR REPLACE INTO aluno " +
             " (codalu, nomalu, nomcur, fotalu) " +
             " VALUES (?, ?, ?, ?)";
-        var sqlF = "INSERT OR REPLACE INTO frequencia " +
-            " (codfrq, codtra, datfrq) " +
-            " VALUES (?, ?, ?)";
-        var sqlFA = "INSERT OR REPLACE INTO frequencia_aluno " +
-            " (codfrqalu, codalu, codfrq, sitalu, assalu) " +
-            " VALUES (?, ?, ?, ?, ?)";
 
         var t;
         var a;
-        var f;
-        var fa;
 
         // Loop through sample data array and insert into db
         for (var i = 0; i < lt; i++) {
@@ -230,28 +177,6 @@ var WebSqlDB = function (successCallback, errorCallback) {
         for (var i = 0; i < la; i++) {
             a = alunos[i];
             tx.executeSql(sqlA, [a.codalu, a.nomalu, a.nomcur, a.fotalu],
-                function () { // Success callback
-                    console.log('DEBUG - 4. Sample data DB insert success');
-                },
-                function (tx, error) { // Error callback
-                    alert('INSERT error: ' + error.message);
-                });
-        }
-
-        for (var i = 0; i < lf; i++) {
-            f = frequencias[i];
-            tx.executeSql(sqlF, [f.codfrq, f.codtra, f.datfrq],
-                function () { // Success callback
-                    console.log('DEBUG - 4. Sample data DB insert success');
-                },
-                function (tx, error) { // Error callback
-                    alert('INSERT error: ' + error.message);
-                });
-        }
-
-        for (var i = 0; i < lfa; i++) {
-            fa = frequenciasAluno[i];
-            tx.executeSql(sqlFA, [fa.codfrqalu, fa.codalu, fa.codfrq, fa.sitalu, fa.assalu],
                 function () { // Success callback
                     console.log('DEBUG - 4. Sample data DB insert success');
                 },

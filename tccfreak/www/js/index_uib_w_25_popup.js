@@ -136,8 +136,8 @@ function uib_w_25_popup_controller($scope, $ionicPopup) {
                     ' </button>' +
                     ' </div>' +
                     '<img src="' + frequenciaAlunos[i].assalu + '" height="80" width="80"> ' +
-                    frequenciaAlunos[i].nomalu + ' - ' + frequenciaAlunos[i].nomtra + ' - ' +
-                    frequenciaAlunos[i].datfrq + '</ion-item>'
+                    frequenciaAlunos[i].nomalu + ' - ' + frequenciaAlunos[i].nomtra + '<br/>' +
+                    'Data da assinatura: ' + frequenciaAlunos[i].datfrq + '</ion-item>'
                 );
             }
         });
