@@ -79,11 +79,16 @@ function uib_w_25_popup_controller($scope, $ionicPopup) {
                 "codtra": $("#seltrabalhos").val(),
                 "datfrq": $("#datafrequencia").val(),
 
-            }), function (status) {
+            }), function (result) {
+
+                var status = result.rowsAffected === 1 ? true : false;
                 if (status === true) {
+                    // pega o id inserido da frequência
+                    var codFrq = result.insertId;
+
                     db.insertFrequenciaAluno(JSON.stringify({
                         "codalu": $("#selalunos").val(),
-                        "codfrq": $("#datafrequencia").val(),
+                        "codfrq": codFrq,
                         "sitalu": 'P',
                         "assalu": document.getElementById("canvasAssinatura").toDataURL(),
 
@@ -98,7 +103,7 @@ function uib_w_25_popup_controller($scope, $ionicPopup) {
                                         text: 'OK',
                                         type: 'button-positivo',
                                         onTap: function (e) {
-
+                                            $scope.listar();
                                         }
                                 }]
                             });
@@ -114,6 +119,30 @@ function uib_w_25_popup_controller($scope, $ionicPopup) {
 
     $scope.limpar = function () {
         padAssinatura.clear();
+    };
+
+    $scope.listar = function () {
+        uib_sb.close_sidebar($("#sbmenu"));
+        db.findAllFreqAluno(function (frequenciaAlunos) {
+            // limpando a lista
+            $("#lstassinaturas").html("");
+            for (var i = 0; i < frequenciaAlunos.length; i++) {
+                // adicionando os itens na lista
+                $("#lstassinaturas").prepend(
+                    '<ion-item id="' + frequenciaAlunos[i].codfrqalu + '" class="item widget uib_w_6 item-button-right" data-uib="ionic/list_item" data-ver="0"> ' +
+                    '<div class="buttons"> ' +
+                    ' <button id="' + frequenciaAlunos[i].codfrqalu + '" name = "' + i + '" class="button button-assertive" onclick="deletarFreqAluno(this.id, ' +
+                    frequenciaAlunos[i].codfrq + ')"><i class="icon icon ion-trash-b"></i> ' +
+                    ' </button>' +
+                    ' </div>' +
+                    '<img src="' + frequenciaAlunos[i].assalu + '" height="80" width="80"> ' +
+                    frequenciaAlunos[i].nomalu + ' - ' + frequenciaAlunos[i].nomtra + ' - ' +
+                    frequenciaAlunos[i].datfrq + '</ion-item>'
+                );
+            }
+        });
+        activate_subpage("#sblassinaturas");
+        return false;
     };
 
 }

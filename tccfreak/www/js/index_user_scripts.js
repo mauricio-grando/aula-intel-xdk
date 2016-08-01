@@ -119,6 +119,10 @@ function addTrabalho() {
     activate_subpage("#sbtrabalhos");
 }
 
+//function addAssinatura() {
+//    activate_subpage("#sbassinatura");
+//}
+
 function onErrorFoto(erroFoto) {
     alert("Erro na captura da foto!" + erroFoto);
 }
@@ -184,8 +188,38 @@ function deletarAluno(codalu) {
     );
 }
 
-function saveAssinatura() {
-    //$("#img").html(padAssinatura.toDataURL());
-    activate_subpage("#page_55_16");
-    return false;
+function deletarFreqAluno(codfrqalu, codfrq) {
+    navigator.notification.confirm(
+        "Deseja excluir esta frequência?",
+        function (idx) {
+            if (idx === 1) {
+                db.deleteFreqAluno(JSON.stringify({
+                    "codfrqalu": codfrqalu
+                }), function (status) {
+
+                    if (status === true) {
+                        db.deleteFrequencia(JSON.stringify({
+                            "codfrq": codfrq
+                        }), function (status) {
+
+                            if (status === true) {
+                                navigator.notification.alert(
+                                    'Frequência removida com sucesso.', // message
+                                    function (idx) {},
+                                    'Alerta',
+                                    'OK'
+                                );
+
+                                var item = document.getElementById(codfrqalu);
+                                item.parentNode.removeChild(item);
+                            }
+                        });
+                    }
+                });
+            } else {
+                return false;
+            }
+        },
+        "Alerta", ['OK', 'Cancelar']
+    );
 }

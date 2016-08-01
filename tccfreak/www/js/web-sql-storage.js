@@ -306,31 +306,6 @@ var WebSqlDB = function (successCallback, errorCallback) {
         );
     };
 
-    this.findFrequenciaAlunoAll = function (callback) {
-        this.db.transaction(
-            function (tx) {
-                var sql = "select fa.codalu as codalu, a.nomalu as nomalu, f.codtra as codtra, t.nomtra as nomtra" +
-                    "from frequencia_aluno fa inner join aluno a inner join frequencia f " +
-                    "inner join trabalho t where fa.codalu = a.codalu " +
-                    "and fa.codfrq = f.codfrq and f.codtra = t.codtra;"
-                tx.executeSql(sql, null, function (tx, results) {
-                    var len = results.rows.length,
-                        frequenciaAlunos = [],
-                        i = 0;
-                    for (; i < len; i++) {
-                        frequenciaAlunos[i] = results.rows.item(i);
-                    }
-
-                    // Passes a array with values back to calling function
-                    callback(frequenciaAlunos);
-                });
-            },
-            function (tx, error) {
-                alert("Transaction Error findAll: " + error);
-            }
-        );
-    };
-
     this.findTrabalhoById = function (codtra, callback) {
         this.db.transaction(
             function (tx) {
@@ -369,7 +344,7 @@ var WebSqlDB = function (successCallback, errorCallback) {
                 var sql = "INSERT INTO frequencia (codtra, datfrq) VALUES (?, ?)";
                 tx.executeSql(sql, [parsedJson.codtra, parsedJson.datfrq], function (tx, result) {
                     // If results rows
-                    callback(result.rowsAffected === 1 ? true : false);
+                    callback(result);
                 });
             }
         );
@@ -440,6 +415,31 @@ var WebSqlDB = function (successCallback, errorCallback) {
         );
     };
 
+    this.findAllFreqAluno = function (callback) {
+        this.db.transaction(
+            function (tx) {
+                var sql = "select fa.codfrqalu as codfrqalu, fa.assalu as assalu, fa.codalu as codalu, a.nomalu as nomalu, t.nomtra as nomtra, f.datfrq as datfrq, fa.codfrq as codfrq from frequencia_aluno fa inner join aluno a inner join frequencia f inner join trabalho t where fa.codalu = a.codalu and fa.codfrq = f.codfrq and f.codtra = t.codtra;"
+
+                tx.executeSql(sql, [], function (tx, results) {
+                    var len = results.rows.length,
+                        freqAlunos = [],
+                        i = 0;
+
+                    // Semicolon at the start is to skip the initialisation of vars as we already initalise i above.
+                    for (; i < len; i = i + 1) {
+                        freqAlunos[i] = results.rows.item(i);
+                    }
+
+                    // Passes a array with values back to calling function
+                    callback(freqAlunos);
+                });
+            },
+            function (error) {
+                alert("Transaction Error findAll frequencia_alunos: " + error.message);
+            }
+        );
+    };
+
     this.findAlunoById = function (codalu, callback) {
         this.db.transaction(
             function (tx) {
@@ -490,6 +490,32 @@ var WebSqlDB = function (successCallback, errorCallback) {
             function (tx) {
                 var sql = "DELETE FROM aluno WHERE codalu=?";
                 tx.executeSql(sql, [parsedJson.codalu], function (tx, result) {
+                    callback(result.rowsAffected === 1 ? true : false);
+                });
+            }
+        );
+    };
+
+    this.deleteFreqAluno = function (json, callback) {
+        // Converts a JavaScript Object Notation (JSON) string into an object.
+        var parsedJson = JSON.parse(json);
+        this.db.transaction(
+            function (tx) {
+                var sql = "DELETE FROM frequencia_aluno WHERE codfrqalu=?";
+                tx.executeSql(sql, [parsedJson.codfrqalu], function (tx, result) {
+                    callback(result.rowsAffected === 1 ? true : false);
+                });
+            }
+        );
+    };
+
+    this.deleteFrequencia = function (json, callback) {
+        // Converts a JavaScript Object Notation (JSON) string into an object.
+        var parsedJson = JSON.parse(json);
+        this.db.transaction(
+            function (tx) {
+                var sql = "DELETE FROM frequencia WHERE codfrq=?";
+                tx.executeSql(sql, [parsedJson.codfrq], function (tx, result) {
                     callback(result.rowsAffected === 1 ? true : false);
                 });
             }

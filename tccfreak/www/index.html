@@ -146,8 +146,7 @@
                     </div>
 
                     <button class="button widget uib_w_24 d-margins ion button-balanced ion-connection-bars icon-left" data-uib="ionic/button" data-ver="0" id="btnsincronizar">Sincronizar</button>
-                    <button class="button widget uib_w_9 d-margins ion button-balanced ion-calendar icon-left" data-uib="ionic/button" data-ver="0" id="btnassinatura" ng-controller="uib_w_25_popup_controller" ng-click="montar()">Assinaturas</button>
-                    <button class="button widget uib_w_4 d-margins ion button-balanced ion-calendar icon-left" data-uib="ionic/button" data-ver="0" id="btnfrequencia" ng-controller="uib_w_25_popup_controller" ng-click="listar()">Frequência</button>
+                    <button class="button widget uib_w_9 d-margins ion button-balanced ion-calendar icon-left" data-uib="ionic/button" data-ver="0" id="btnassinatura" ng-controller="uib_w_25_popup_controller" ng-click="listar()">Assinaturas</button>
                     <button class="button widget uib_w_5 d-margins ion button-balanced ion-code-working icon-left" data-uib="ionic/button" data-ver="0" id="btntrabalhos" ng-controller="uib_w_22_popup_controller" ng-click="listar()">Trabalhos</button>
                     <button class="button widget uib_w_6 d-margins ion button-balanced ion-person-stalker icon-left" data-uib="ionic/button" data-ver="0" id="btnalunos" ng-controller="uib_w_23_popup_controller" ng-click="listar()">Alunos</button>
                     <button class="button widget uib_w_7 d-margins ion button-balanced ion-android-information icon-left" data-uib="ionic/button" data-ver="0" id="btninformacoes" ng-controller="uib_w_19_popup_controller" ng-click="show()">Informações</button>
@@ -239,7 +238,15 @@
                     <i class="icon ion ion-android-add"></i>
                 </ion-fab>
             </div>
-
+            <div id="sblassinaturas" class="upage-content vertical-col hidden">
+                <ion-scroll zooming="true" direction="xy">
+                    <ion-list class="widget uib_w_22 d-margins" data-uib="ionic/list" data-ver="0" id="lstassinaturas">
+                    </ion-list>
+                </ion-scroll>
+                <ion-fab id="addAssinatura" ng-controller="uib_w_25_popup_controller" ng-click="montar()">
+                    <i class="icon ion ion-android-add"></i>
+                </ion-fab>
+            </div>
         </div>
     </div>
 </body>
