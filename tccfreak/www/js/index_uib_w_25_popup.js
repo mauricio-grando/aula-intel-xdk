@@ -1,12 +1,11 @@
 function uib_w_25_popup_controller($scope, $ionicPopup) {
 
-    var padAssinatura;
+    $scope.padAssinatura = padAssinatura;
 
     $scope.criarData = function () {
         var today = new Date();
         var dd = today.getDate();
         var mm = today.getMonth() + 1;
-
         var yyyy = today.getFullYear();
 
         return dd + "/" + mm + "/" + yyyy;
@@ -14,7 +13,8 @@ function uib_w_25_popup_controller($scope, $ionicPopup) {
 
     $scope.montar = function () {
         uib_sb.close_sidebar($("#sbmenu"));
-        //$("#datafrequencia").attr("value", $scope.criarData());
+        console.log('data: ' + $scope.criarData());
+        //$("#datafrequencia").val($scope.criarData()); NÃO DEU CERTO =/
 
         // busca os alunos e monta um select box
         db.findAlunoAll(function (alunos) {
@@ -60,7 +60,7 @@ function uib_w_25_popup_controller($scope, $ionicPopup) {
                         }]
             });
 
-        } else if (document.getElementById("canvasAssinatura") === null) {
+        } else if (padAssinatura.isEmpty()) {
             var confirmPopup = $ionicPopup.alert({
                 title: 'Alerta',
                 template: 'Por favor preencha a assinatura.',
@@ -90,7 +90,7 @@ function uib_w_25_popup_controller($scope, $ionicPopup) {
                         "codalu": $("#selalunos").val(),
                         "codfrq": codFrq,
                         "sitalu": 'P',
-                        "assalu": document.getElementById("canvasAssinatura").toDataURL(),
+                        "assalu": padAssinatura.toDataURL(),
 
                     }), function (status) {
                         if (status === true) {
@@ -103,6 +103,7 @@ function uib_w_25_popup_controller($scope, $ionicPopup) {
                                         text: 'OK',
                                         type: 'button-positivo',
                                         onTap: function (e) {
+                                            $scope.limpar();
                                             $scope.listar();
                                         }
                                 }]
@@ -119,6 +120,9 @@ function uib_w_25_popup_controller($scope, $ionicPopup) {
 
     $scope.limpar = function () {
         padAssinatura.clear();
+        $("#datafrequencia").val("");
+        $("#selalunos").val($("#selalunos option:first").val());
+        $("#seltrabalhos").val($("#seltrabalhos option:first").val());
     };
 
     $scope.listar = function () {
